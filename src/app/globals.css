@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --hippo-brand-grey: #DDE4E6;
+  --hippo-brand-green: #005E5D;
+  --hippo-brand-navy: #0C2340;
+  --hippo-brand-purple: #3C1053;
+  --hippo-brand-light-green: #A0DAB3;
+  --hippo-brand-light-blue: #88DBDF;
+  --hippo-brand-pink: #FFA3B5;
+  --hippo-brand-yellow: #f9a502;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --hippo-brand-grey: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--hippo-brand-grey);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
