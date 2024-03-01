@@ -52,8 +52,6 @@ const ShareRoomDialog = () => {
         <DialogTitle sx={{ fontSize: 26, padding: 6 }}>Invite players</DialogTitle>
         <DialogContent sx={{ paddingX: 6, paddingY: 0 }}>
           <TextField
-            autoFocus
-            required
             margin="dense"
             label="Game's url"
             type="text"

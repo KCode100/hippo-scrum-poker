@@ -10,6 +10,7 @@ const CreateRoomDialog = () => {
   const [displayName, setDisplayName] = useState('')
   const [pending, setPending] = useState(false)
   const [error, setError] = useState(false)
+  const [displayNameError, setDisplayNameError] = useState(false)
   const router = useRouter()
 
   function handleOpenDialog() {
@@ -21,8 +22,14 @@ const CreateRoomDialog = () => {
   }
 
   async function handleSubmit() {
+    if (!displayName) {
+      setDisplayNameError(true)
+      return
+    }
+
     setPending(true)
     setDialogOpen(false)
+    
     try {
       // CREATE A NEW FIRESTORE DOCUMENT
       const userId = crypto.randomUUID()
@@ -76,6 +83,7 @@ const CreateRoomDialog = () => {
             autoComplete="off"
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
+            error={displayNameError}
           />
         </DialogContent>
         <DialogActions sx={{ padding: 6 }}>
