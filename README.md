@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hippo Scrum Poker
+
+Welcome to the Hippo Scrum Poker Web App! Tired of the unreliable and buggy services out there, I, as any engineer would do, decided to take matters into my own hands and build my very own solution from scratch! Thus, behold the Hippo Scrum Poker App – Let's make Agile a little more fun, one estimation at a time! 🦛
+
+## Features
+
+### Real-time Interactions
+Real-time collaboration made possible with Firebase's Firestore Database.
+
+### Company Branding
+The App uses Hippo's branding and colors, because who said Agile couldn't be stylish?!
+
+## Tech Stack
+
+- **Typescript**
+- **React**
+- **Next.js 14**
+- **Firebase**
+
+## Contribution
+
+Fellow enthusiasts looking to make this App even better, your contributions are more than welcome!
 
 ## Getting Started
 
-First, run the development server:
+To get started with the Hippo Scrum Poker Web App, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone the repository to your local machine.
+2. Install dependencies by running `npm install` or `yarn install`.
+3. Set up your Firebase project and configure Firestore Database, or add the project's env variables.
+4. Fire up the app locally with `npm run dev` or `yarn dev`.
+5. Open your browser, access the app, and start estimating like a boss.
