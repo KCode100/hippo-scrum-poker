@@ -1,9 +1,9 @@
 import styles from "./points-card.module.css";
 import { useEffect, useState } from "react";
-import { useDocumentContext } from "@/app/room/[id]/page";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
 import ErrorAlert from "./error-alert";
+import { useDocumentContext } from "@/app/contexts/documentContext";
 
 const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
   const document = useDocumentContext()
