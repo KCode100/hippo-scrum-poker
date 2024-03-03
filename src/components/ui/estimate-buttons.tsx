@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorAlert from "./error-alert";
 import { Player } from "@/hooks/useRealtimeDocumentListener";
 import { doc, updateDoc } from "firebase/firestore";
@@ -48,6 +48,14 @@ const EstimateButtons = ({ currentPlayer, roomId } : Props) => {
       setError(true)
     }
   }
+
+  useEffect(() => {
+    if (document) {
+      // Auto select user's pre-existing points
+      const currentPlayerPoints = document.players.find(player => player.id === currentPlayer.id)?.points
+      setSelectedOption(currentPlayerPoints)
+    }
+  }, [document])
 
   return ( 
     <div className="max-w-4xl flex flex-wrap gap-6 justify-evenly py-12">
