@@ -1,12 +1,13 @@
 'use client'
 
+import { DocumentContext } from "@/app/contexts/documentContext";
 import EstimateButtons from "@/components/ui/estimate-buttons";
 import FullScrreenLoader from "@/components/ui/full-screen-loader";
 import RoomHeader from "@/components/ui/room-header";
 import StoryPointsBoard from "@/components/ui/story-points-board";
-import { RoomData, useRealtimeDocumentListener } from "@/hooks/useRealtimeDocumentListener";
+import { useRealtimeDocumentListener } from "@/hooks/useRealtimeDocumentListener";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 // 1. Room creator - (has ID and display name)
 // - Use id from localStorage and displayName from document. Open "share" dialog
@@ -19,10 +20,6 @@ import { createContext, useContext, useEffect } from "react";
 
 // 4. New player with no ID - (no ID, no display name)
 // - Prompt user for a displayName. Generate and store new id in localStorage and in document. 
-
-const DocumentContext = createContext<null | RoomData>(null);
-
-export const useDocumentContext = () => useContext(DocumentContext);
 
 export default function RoomPage({ params }: { params: { id: string } }) {
   const { document, error, loading } = useRealtimeDocumentListener(params.id)

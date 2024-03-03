@@ -1,9 +1,9 @@
-import { useDocumentContext } from "@/app/room/[id]/page";
 import { useState } from "react";
 import ErrorAlert from "./error-alert";
 import { Player } from "@/hooks/useRealtimeDocumentListener";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase/config";
+import { useDocumentContext } from "@/app/contexts/documentContext";
 
 type Props = {
   currentPlayer: Player
