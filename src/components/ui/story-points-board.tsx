@@ -54,7 +54,7 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
                 </th>
                 <td className="px-6 py-4 text-hippo-brand-navy">
                   <div className={styles.wrapper}>
-                    <div className={`${styles.card} ${scoresHidden && player.points ? '' : styles.isFlipped}`}>
+                    <div className={`${styles.card} ${!player.points ? '' : !scoresHidden && player.points ? styles.isFlipped : ''}`}>
                       <div className={`${styles.card__face} ${styles.card__facefront}`}>
                         {player.points ? (
                           <img src="/hippo.png" alt="hippo" width="50%" />
