@@ -1,6 +1,6 @@
 # Hippo Scrum Poker
 
-Welcome to the Hippo Scrum Poker Web App! Tired of the unreliable and buggy services out there, I, as any engineer would do, decided to take matters into my own hands and build my very own solution from scratch! Thus, behold the Hippo Scrum Poker App – Let's make Agile a little more fun, one estimation at a time! 🦛
+Welcome to the Hippo Scrum Poker Web App! Tired of the unreliable and buggy services out there, I, as any engineer would do, decided to take matters into my own hands! Thus, behold the Hippo Scrum Poker App – Let's make Agile a little more fun, one estimation at a time! 🦛
 
 ## Features
 
