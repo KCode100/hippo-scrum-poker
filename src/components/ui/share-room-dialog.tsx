@@ -1,16 +1,20 @@
 'use client'
 import { Dialog, DialogActions, DialogContent, DialogTitle, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from 'next/navigation'
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import QRCode from "react-qr-code";
 
-const ShareRoomDialog = () => {
-  const [dialogOpen, setDialogOpen] = useState(false)
+const ShareRoomDialog = ({ open = false }: { open?: boolean }) => {
+  const [dialogOpen, setDialogOpen] = useState(open)
   const [copiedText, copy] = useCopyToClipboard()
   const [copiedAlertOpen, setCopiedAlertOpen] = useState(false)
   const pathname = usePathname()
   const currentURL = `${process.env.NEXT_PUBLIC_URL}${pathname}`
+
+  useEffect(() => {
+    setDialogOpen(open)
+  }, [open])
 
   const handleCopyLink = () => {
     copy(currentURL)
@@ -70,7 +74,7 @@ const ShareRoomDialog = () => {
         <DialogActions sx={{ padding: 6 }}>
           <button
             type="submit"
-            className="w-full px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-hippo-brand-navy hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+            className="w-full px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-hippo-brand-green hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             onClick={handleCopyLink}
           >
             Copy invitation link
@@ -95,7 +99,7 @@ const ShareRoomDialog = () => {
           >
             <span className="sr-only">Close</span>
             <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
             </svg>
           </button>
         </div>
