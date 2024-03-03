@@ -7,14 +7,15 @@ import { useDocumentContext } from "@/app/contexts/documentContext";
 
 const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
   const document = useDocumentContext()
-  const [showPoints, setShowPoints] = useState(false)
+  const [scoresHidden, setScoresHidden] = useState(true)
   const [error, setError] = useState(false)
 
-  async function handleShowPoints() {
-    setShowPoints(!showPoints)
+  async function handleToggleScores() {
+    console.log(scoresHidden)
+    setScoresHidden(!scoresHidden)
     try {
       const ref = doc(db, 'rooms', roomId)
-      await updateDoc(ref, { scoresHidden: !showPoints })
+      await updateDoc(ref, { scoresHidden: !scoresHidden })
 
     } catch (error) {
       console.error('Error creating document:', error);
@@ -24,7 +25,7 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
 
   useEffect(() => {
     if (document) {
-      setShowPoints(document?.scoresHidden)
+      setScoresHidden(document?.scoresHidden)
     }
   }, [document])
 
@@ -33,10 +34,10 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
       <div className="max-w-4xl">
         <button
           type="button"
-          className={`block ml-auto font-medium rounded-lg text-sm px-5 py-2.5 mb-4 min-w-20 focus:outline-none focus:ring-2 border ${showPoints ? 'text-hippo-brand-navy bg-gray-100 border-hippo-brand-navy' : 'text-white bg-hippo-brand-purple hover:bg-hippo-brand-purple focus:ring-purple-300 border-hippo-brand-purple'}`}
-          onClick={handleShowPoints}
+          className={`block ml-auto font-medium rounded-lg text-sm px-5 py-2.5 mb-4 min-w-20 focus:outline-none focus:ring-2 border ${scoresHidden ? 'text-white bg-hippo-brand-purple hover:bg-hippo-brand-purple focus:ring-purple-300 border-hippo-brand-purple' : 'text-hippo-brand-navy bg-gray-100 border-hippo-brand-navy'}`}
+          onClick={handleToggleScores}
         >
-          {showPoints ? 'Hide' : 'Show'}
+          {scoresHidden ? 'Show' : 'Hide'}
         </button>
         <table className="w-full text-left rtl:text-right text-gray-500">
           <thead className="text-sm text-hippo-brand-grey uppercase bg-hippo-brand-navy">
@@ -53,7 +54,7 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
                 </th>
                 <td className="px-6 py-4 text-hippo-brand-navy">
                   <div className={styles.wrapper}>
-                    <div className={`${styles.card} ${showPoints && player.points ? styles.isFlipped : ''}`}>
+                    <div className={`${styles.card} ${scoresHidden && player.points ? '' : styles.isFlipped}`}>
                       <div className={`${styles.card__face} ${styles.card__facefront}`}>
                         {player.points ? (
                           <img src="/hippo.png" alt="hippo" width="50%" />
@@ -70,20 +71,7 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
           </tbody>
         </table>
       </div>
-      {error && (
-        <ErrorAlert>
-          <button
-            type="button"
-            className="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
-            onClick={() => setError(false)}
-          >
-            <span className="sr-only">Close</span>
-            <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-            </svg>
-          </button>
-        </ErrorAlert>
-        )}
+      {error && <ErrorAlert callback={() => setError(false)} /> }
     </div>
   )
 }
