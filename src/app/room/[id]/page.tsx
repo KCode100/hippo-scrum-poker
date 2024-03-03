@@ -20,7 +20,7 @@ import { createContext, useContext, useEffect } from "react";
 // 4. New player with no ID - (no ID, no display name)
 // - Prompt user for a displayName. Generate and store new id in localStorage and in document. 
 
-export const DocumentContext = createContext<null | RoomData>(null);
+const DocumentContext = createContext<null | RoomData>(null);
 
 export const useDocumentContext = () => useContext(DocumentContext);
 
