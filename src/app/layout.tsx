@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Hippo Scrum Poker",
   description: "Easy-to-use story point estimations.",
+  metadataBase: new URL("https://hippo-scrum-poker.vercel.app"),
 }
 
 export default function RootLayout({
