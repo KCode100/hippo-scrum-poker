@@ -65,7 +65,7 @@ const CreateRoomDialog = () => {
     <>
       <button
         type="button"
-        className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-hippo-brand-green hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+        className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-hippo-brand-green hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
         onClick={handleOpenDialog}
       >
         Create instant room
@@ -96,7 +96,7 @@ const CreateRoomDialog = () => {
         <DialogActions sx={{ padding: 6 }}>
           <button
             type="submit"
-            className="w-full px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-hippo-brand-green hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+            className="w-full px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-hippo-brand-green hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
             onClick={handleSubmit}
             disabled={pending}
           >
