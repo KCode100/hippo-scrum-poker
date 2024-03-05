@@ -9,7 +9,7 @@ export function CardsSection() {
         <CardBody className="bg-gray-50 relative group/card border-black/[0.1] h-auto rounded-xl p-6 border w-full">
           <CardItem
             translateZ="50"
-            className="text-4xl text-center w-full font-semibold text-neutral-600 dark:text-white"
+            className="text-4xl text-center w-full font-semibold text-neutral-600"
           >
             Collaboration
           </CardItem>
