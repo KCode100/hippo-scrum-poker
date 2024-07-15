@@ -10,7 +10,7 @@ type Props = {
   roomId: string
 }
 
-const estimationOptions: string[] = ["?", "☕", "0", "0.5", "1", "2", "3", "5", "8", "13", "21", "34", "89", "144"]
+const estimationOptions: string[] = ["?", "☕", "0", "0.5", "1", "2", "3", "5", "8", "13", "21", "34", "55", "89"]
 
 const EstimateButtons = ({ currentPlayer, roomId }: Props) => {
   const document = useDocumentContext()
