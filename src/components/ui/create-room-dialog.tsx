@@ -87,7 +87,13 @@ const CreateRoomDialog = () => {
             type="text"
             fullWidth
             variant="outlined"
-            autoComplete="off"
+            name="player-nickname"
+            inputProps={{
+              autoComplete: "new-password", // Prevents browser autofill suggestions
+              "data-form-type": "other", // Tells browsers this isn't a standard form field
+              "data-lpignore": "true", // Prevents LastPass from suggesting autofill
+              "data-1p-ignore": "true", // Prevents 1Password from suggesting autofill
+            }}
             value={displayName}
             onChange={(e) => setDisplayName(e.target.value)}
             error={displayNameError}
