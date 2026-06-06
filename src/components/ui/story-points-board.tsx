@@ -5,11 +5,23 @@ import { db } from "@/lib/firebase/config";
 import ErrorAlert from "./error-alert";
 import { useDocumentContext } from "@/app/contexts/documentContext";
 import DeleteScoresDialog from "./delete-scores-dialog";
+import RenamePlayerDialog from "./rename-player-dialog";
+import RemovePlayerDialog from "./remove-player-dialog";
+import { Player } from "@/hooks/useRealtimeDocumentListener";
+import { useRouter } from "next/navigation";
 
-const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
+type Props = {
+  roomId: string
+  currentPlayer: Player
+}
+
+const StoryPointsBoard = ({ roomId, currentPlayer }: Props) => {
   const document = useDocumentContext()
+  const router = useRouter()
   const [scoresHidden, setScoresHidden] = useState(true)
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [renameTarget, setRenameTarget] = useState<Player | null>(null)
+  const [removeTarget, setRemoveTarget] = useState<Player | null>(null)
   const [error, setError] = useState(false)
 
   async function handleToggleScores() {
@@ -22,6 +34,10 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
       console.error('Error creating document:', error);
       setError(true)
     }
+  }
+
+  function handleRemovedSelf() {
+    router.replace(`/room/${roomId}/add-player`)
   }
 
   useEffect(() => {
@@ -54,6 +70,7 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
             <tr>
               <th scope="col" className="px-6 py-3">Name</th>
               <th scope="col" className="px-6 py-3">Story Points</th>
+              <th scope="col" className="px-6 py-3">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -76,6 +93,26 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
                     </div>
                   </div>
                 </td>
+                <td className="px-6 py-4 text-hippo-brand-navy normal-case">
+                  <div className="flex gap-2">
+                    {player.id === currentPlayer.id && (
+                      <button
+                        type="button"
+                        className="font-medium rounded-lg text-sm px-3 py-1.5 focus:outline-none focus:ring-2 border text-hippo-brand-navy bg-gray-100 border-hippo-brand-navy hover:bg-gray-200"
+                        onClick={() => setRenameTarget(player)}
+                      >
+                        Rename
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="font-medium rounded-lg text-sm px-3 py-1.5 focus:outline-none focus:ring-2 border text-white bg-red-600 border-red-600 hover:bg-red-700"
+                      onClick={() => setRemoveTarget(player)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -83,6 +120,22 @@ const StoryPointsBoard = ({ roomId }: { roomId: string }) => {
       </div>
       {error && <ErrorAlert callback={() => setError(false)} /> }
       {deleteDialogOpen && <DeleteScoresDialog callback={() => setDeleteDialogOpen(false)} roomId={ roomId } /> }
+      {renameTarget && (
+        <RenamePlayerDialog
+          callback={() => setRenameTarget(null)}
+          roomId={roomId}
+          player={renameTarget}
+        />
+      )}
+      {removeTarget && (
+        <RemovePlayerDialog
+          callback={() => setRemoveTarget(null)}
+          roomId={roomId}
+          player={removeTarget}
+          currentPlayerId={currentPlayer.id}
+          onRemovedSelf={handleRemovedSelf}
+        />
+      )}
     </div>
   )
 }

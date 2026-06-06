@@ -12,7 +12,7 @@ const DeleteScoresDialog = ({ callback, roomId } : { callback: () => void, roomI
   
   async function handleDeleteScores() {
     try {
-      const updatedPlayersData: Player[] | undefined = document?.players.map(({ id, name }) => ({ id, name }))
+      const updatedPlayersData: Player[] | undefined = document?.players.map(({ points, ...player }) => player)
       
       const ref = doc(db, 'rooms', roomId)
       await updateDoc(ref, {
