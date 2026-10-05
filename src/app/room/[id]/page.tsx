@@ -62,7 +62,7 @@ export default function RoomPage({ params }: { params: { id: string } }) {
       </section>
 
       <section className="py-12">
-        <StoryPointsBoard roomId={params.id} />
+        <StoryPointsBoard currentPlayer={existingPlayer} roomId={params.id} />
       </section>
     </DocumentContext.Provider>
   )
